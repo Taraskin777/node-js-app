@@ -10,9 +10,10 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
+  const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const imageUrl = req.body.imageUrl;
+  
   const product = new Product(null, title, imageUrl, description, price);
   product.save();
   res.redirect("/");
@@ -26,7 +27,7 @@ exports.getEditProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findById(prodId, (product) => {
     if (!product) {
-      res.redirect("/");
+      return res.redirect("/");
     }
     res.render("admin/edit-product", {
       pageTitle: "Edit Product",

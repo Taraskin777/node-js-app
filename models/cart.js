@@ -48,7 +48,11 @@ module.exports = class Cart {
       updatedCart.products = updatedCart.products.filter(
         (prod) => prod.id !== id
       );
-      updatedCart.totalPrice = productPrice - productPrice * productQty;
+      if (updatedCart.products.length !== 0) {
+        updatedCart.totalPrice =
+          updatedCart.totalPrice - productPrice * productQty;
+      } else updatedCart.totalPrice = 0;
+
       fs.writeFile(p, JSON.stringify(updatedCart), (err) => {
         console.log(err);
       });

@@ -44,8 +44,8 @@ exports.getCart = (req, res, next) => {
         }
       }
       res.render("shop/cart", {
-        pageTitle: "Your Cart",
         path: "/cart",
+        pageTitle: "Your Cart",
         products: cartProducts,
       });
     });
@@ -70,8 +70,8 @@ exports.postCartDeleteProduct = (req, res, next) => {
 
 exports.getOrders = (req, res, next) => {
   res.render("shop/orders", {
-    pageTitle: "Your Orders",
     path: "/orders",
+    pageTitle: "Your Orders",
   });
 };
 
