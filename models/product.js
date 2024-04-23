@@ -2,12 +2,6 @@ const db = require('../util/database');
 
 const Cart = require('./cart');
 
-// const p = path.join(
-//   path.dirname(require.main.filename),
-//   'data',
-//   'products.json'
-// );
-
 module.exports = class Product {
   constructor(id, title, imageUrl, description, price) {
     this.id = id;
@@ -30,5 +24,7 @@ module.exports = class Product {
     return db.execute('SELECT * FROM products');
   }
 
-  static findById(id) {}
+  static findById(id) {
+    return db.execute('SELECT * FROM products WHERE products.id = ?', [id]);
+  }
 };
