@@ -1,5 +1,5 @@
 const path = require('path');
-
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,8 +9,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI =
-  'mongodb+srv://tarasnoga777:pass17101980@cluster0.qlklvkd.mongodb.net/shop';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const app = express();
 const store = new MongoDBStore({
@@ -36,14 +35,7 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  User.findById('663e417b411fc0af496857b9')
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
-});
+
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
