@@ -1,6 +1,7 @@
 <form action="/cart" method="post">
   <% if (isAuthenticated) { %>
   <button type="submit" class="product__btn btn">Add to Cart</button>
+  <input type="hidden" value="<%= csrfToken %>" name="_csrf">
   <input type="hidden" name="productId" value="<%= product._id %>" />
   <% } %>
 </form>
