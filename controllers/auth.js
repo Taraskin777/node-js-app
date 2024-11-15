@@ -87,10 +87,10 @@ exports.postSignup = (req, res, next) => {
       errorMessage: errors.array()[0].msg,
     });
   }
-  if (password !== confirmPassword) {
-    req.flash('error', 'Passwords have to match!');
-    return res.redirect('/signup');
-  }
+  // if (password !== confirmPassword) {
+  //   req.flash('error', 'Passwords have to match!');
+  //   return res.redirect('/signup');
+  // }
   User.findOne({ email: email })
     .then((userDoc) => {
       if (userDoc) {
